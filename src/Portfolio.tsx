@@ -725,6 +725,17 @@ export default function PortfolioHenriqueFernandes() {
                 </a>
               ))}
             </div>
+            <div className="mt-4 pt-4 border-t border-white/10 flex justify-end">
+              <button
+                type="button"
+                onClick={toggleLanguage}
+                className="rounded-full border border-[#d6a354]/50 p-1.5 text-[#d6a354] hover:bg-[#d6a354]/10 transition"
+                aria-label="Toggle language"
+                title={language === "pt" ? "Switch to English" : "Mudar para Português"}
+              >
+                <span className="text-xs font-bold">{language.toUpperCase()}</span>
+              </button>
+            </div>
           </motion.div>
         )}
       </header>
