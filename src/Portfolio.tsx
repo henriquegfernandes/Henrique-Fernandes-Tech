@@ -33,7 +33,7 @@ type IconProps = {
 };
 
 type NavItem = {
-  label: string;
+  key: "sobre" | "servicos" | "projetos" | "valores" | "tecnologias" | "contato";
   href: string;
 };
 
@@ -204,12 +204,12 @@ const technologies: string[] = [
 ];
 
 const navItems: NavItem[] = [
-  { label: "Sobre", href: "#sobre" },
-  { label: "Serviços", href: "#servicos" },
-  { label: "Projetos", href: "#projetos" },
-  { label: "Valores", href: "#valores" },
-  { label: "Tecnologias", href: "#tecnologias" },
-  { label: "Contato", href: "#contato" },
+  { key: "sobre", href: "#sobre" },
+  { key: "servicos", href: "#servicos" },
+  { key: "projetos", href: "#projetos" },
+  { key: "valores", href: "#valores" },
+  { key: "tecnologias", href: "#tecnologias" },
+  { key: "contato", href: "#contato" },
 ];
 
 const contactLinks: ContactLink[] = [
@@ -545,7 +545,7 @@ export default function PortfolioHenriqueFernandes() {
           <div className="hidden items-center gap-4 sm:gap-6 lg:flex lg:gap-8">
             {navItems.map((item) => (
               <a key={item.href} href={item.href} className="text-xs font-medium text-white transition hover:text-[#d6a354] sm:text-sm lg:text-base">
-                {t.nav[item.label.toLowerCase() as keyof typeof t.nav] || item.label}
+                {t.nav[item.key]}
               </a>
             ))}
           </div>
@@ -586,7 +586,7 @@ export default function PortfolioHenriqueFernandes() {
                   className="text-sm font-medium text-white transition hover:text-[#d6a354]"
                   onClick={() => setMenuOpen(false)}
                 >
-                  {t.nav[item.label.toLowerCase() as keyof typeof t.nav] || item.label}
+                  {t.nav[item.key]}
                 </a>
               ))}
             </div>
