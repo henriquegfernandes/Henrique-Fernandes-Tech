@@ -327,7 +327,7 @@ const navItems: NavItem[] = [
 const contactLinks: ContactLink[] = [
   { label: "GitHub", href: "https://github.com/henriquegfernandes", icon: "github" },
   { label: "LinkedIn", href: "https://www.linkedin.com/in/henrique-fernandes-586537111", icon: "linkedin" },
-  { label: "E-mail", href: "mailto:contato@henriquefernandes.tech", icon: "mail" },
+  { label: "E-mail", href: "mailto:contato@henriquefernandes.dev", icon: "mail" },
   { label: "WhatsApp", href: "https://wa.me/5511957804108", icon: "whatsapp" },
 ];
 
