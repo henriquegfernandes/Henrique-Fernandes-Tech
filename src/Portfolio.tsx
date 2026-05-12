@@ -32,25 +32,6 @@ type IconProps = {
   className?: string;
 };
 
-type Project = {
-  title: string;
-  description: string;
-  tech: string[];
-  icon: IconName;
-  url?: string;
-  company?: string;
-  period?: string;
-  role?: string;
-  kind: "github" | "professional";
-  highlight?: boolean;
-};
-
-type ValueItem = {
-  title: string;
-  text: string;
-  icon: IconName;
-};
-
 type NavItem = {
   label: string;
   href: string;
@@ -205,111 +186,18 @@ const Icon = ({ name, size = 20, className = "" }: IconProps) => {
   return icons[name];
 };
 
-const projects: Project[] = [
-  {
-    title: "Dízimo",
-    company: "Projeto Autônomo",
-    role: "Desenvolvido em 2026",
-    description:
-      "Sistema para gestão de dízimo e ofertas, pensado para ajudar paróquias a se organizarem e servirem melhor seus fiéis.",
-    tech: ["C#", "ASP.NET Core", "MySQL", "Bootstrap"],
-    url: "https://github.com/henriquegfernandes/Dizimo",
-    icon: "church",
-    kind: "github",
-    highlight: true,
-  },
-  {
-    title: "ReciclaLead CRM",
-    company: "ReciclaLead",
-    period: "Abr/2024 — Mai/2025",
-    role: "Desenvolvedor Full Stack",
-    description:
-      "Sistema de CRM e integrações para gestão de leads, acompanhamento comercial e automação de processos. Atuação full stack no desenvolvimento, sustentação e evolução da plataforma.",
-    tech: ["Python", "Django", "React", "PostgreSQL", "Docker", "Integrações"],
-    icon: "users",
-    kind: "professional",
-  },
-  {
-    title: "Mr. Sales CRM",
-    company: "UsadosBR",
-    period: "Jul/2022 — Jul/2023",
-    role: "Desenvolvedor Back-End",
-    description:
-      "Produto SaaS de CRM voltado ao setor automotivo. Atuação no desenvolvimento e sustentação da API, apoiando funcionalidades comerciais e integrações usadas por lojas e concessionárias.",
-    tech: ["C#", ".NET", "APIs REST", "SQL Server", "SaaS", "CRM"],
-    icon: "shield",
-    kind: "professional",
-  },
-  {
-    title: "DsAutoEstoque",
-    company: "UsadosBR",
-    period: "Jul/2022 — Jul/2023",
-    role: "Desenvolvedor Back-End",
-    description:
-      "Integrador de anúncios para lojas e concessionárias automotivas, conectando estoque de veículos a canais de divulgação e ajudando empresas a manter seus anúncios atualizados.",
-    tech: ["C#", ".NET", "APIs", "Integrações", "SQL Server", "Automotivo"],
-    icon: "code",
-    kind: "professional",
-  },
-  {
-    title: "StockSolutions",
-    company: "Projeto autônomo",
-    period: "Jul/2023 — Abr/2024",
-    role: "Desenvolvedor Full Stack Autônomo",
-    description:
-      "Projeto de vitrine digital e gestão de estoque para lojas, com foco em exposição de produtos, organização de catálogo e apoio ao processo comercial online.",
-    tech: ["React", "TypeScript", ".NET", "SQL", "E-commerce", "Gestão de estoque"],
-    icon: "folder",
-    kind: "professional",
-  },
-  {
-    title: "CRUD MVC Repository",
-    company: "Projeto Autônomo",
-    role: "Desenvolvido em 2022",
-    description:
-      "Aplicação CRUD com arquitetura MVC e padrão Repository, aplicando boas práticas e separação de responsabilidades.",
-    tech: ["C#", "ASP.NET MVC", "Entity Framework"],
-    url: "https://github.com/henriquegfernandes/CRUD-MVC-Repository",
-    icon: "code",
-    kind: "github",
-  },
-];
-
-const services: ValueItem[] = [
-  {
-    icon: "code",
-    title: "Sistemas Web",
-    text: "Aplicações modernas, responsivas e pensadas para resolver problemas reais do dia a dia.",
-  },
-  {
-    icon: "shield",
-    title: "APIs e Backend",
-    text: "Criação de APIs, autenticação, regras de negócio, integrações e estrutura de dados.",
-  },
-  {
-    icon: "church",
-    title: "Projetos Católicos",
-    text: "Soluções para paróquias, pastorais, comunidades e instituições que precisam ir mais longe.",
-  },
-];
-
-const values: ValueItem[] = [
-  { title: "Justiça", text: "Fazer o certo, com integridade e respeito ao próximo.", icon: "shield" },
-  { title: "Humildade", text: "Reconhecer minhas limitações e estar sempre disposto a aprender.", icon: "users" },
-  { title: "Obediência a Deus", text: "Colocar a vontade de Deus acima de tudo.", icon: "cross" },
-  { title: "Caridade", text: "Amar e servir ao próximo através da tecnologia.", icon: "heart" },
-];
-
 const technologies: string[] = [
-  "React",
-  "Vite",
-  "Tailwind",
-  "TypeScript",
   "C#",
   ".NET",
-  "ASP.NET Core",
+  "ASP.NET",
   "Entity Framework",
+  "Dapper",
   "SQL",
+  "Redis",
+  "React",
+  "TypeScript",
+  "Vite",
+  "Tailwind",
   "APIs REST",
   "Git",
   "Docker",
@@ -330,29 +218,6 @@ const contactLinks: ContactLink[] = [
   { label: "E-mail", href: "mailto:contato@henriquefernandes.dev", icon: "mail" },
   { label: "WhatsApp", href: "https://wa.me/5511957804108", icon: "whatsapp" },
 ];
-
-function validatePortfolioData() {
-  return {
-    hasProjects: projects.length >= 3,
-    publicProjectsHaveUrls: projects.filter((project) => project.kind === "github").every((project) => Boolean(project.url)),
-    allProjectsHaveTechs: projects.every((project) => project.tech.length > 0),
-    hasServices: services.length === 3,
-    hasValues: values.length === 4,
-    hasContactLinks: contactLinks.length === 4,
-    hasLogo: Boolean(Logo),
-    hasProfilePhoto: Boolean(Profile),
-  };
-}
-
-const tests = validatePortfolioData();
-console.assert(tests.hasProjects, "Deve existir pelo menos três projetos no portfólio.");
-console.assert(tests.publicProjectsHaveUrls, "Todos os projetos públicos devem ter uma URL.");
-console.assert(tests.allProjectsHaveTechs, "Todos os projetos devem listar tecnologias.");
-console.assert(tests.hasServices, "Devem existir três serviços principais.");
-console.assert(tests.hasValues, "Devem existir quatro valores principais.");
-console.assert(tests.hasContactLinks, "Devem existir quatro formas de contato.");
-console.assert(tests.hasLogo, "A logo deve estar configurada.");
-console.assert(tests.hasProfilePhoto, "A foto de perfil deve estar configurada.");
 
 const translations = {
   pt: {
@@ -433,23 +298,23 @@ const translations = {
           kind: "professional",
         },
         {
-          title: "Mr. Sales CRM",
-          company: "UsadosBR",
-          period: "Jul/2022 — Jul/2023",
-          role: "Desenvolvedor Back-End",
-          description: "Produto SaaS de CRM voltado ao setor automotivo. Atuação no desenvolvimento e sustentação da API, apoiando funcionalidades comerciais e integrações usadas por lojas e concessionárias.",
-          tech: ["C#", ".NET", "APIs REST", "SQL Server", "SaaS", "CRM"],
-          icon: "shield",
-          kind: "professional",
-        },
-        {
           title: "DsAutoEstoque",
           company: "UsadosBR",
           period: "Jul/2022 — Jul/2023",
           role: "Desenvolvedor Back-End",
           description: "Integrador de anúcios para lojas e concessionárias automotivas, conectando estoque de veículos a canais de divulgação e ajudando empresas a manter seus anúcios atualizados.",
           tech: ["C#", ".NET", "APIs", "Integrações", "SQL Server", "Automotivo"],
-          icon: "code",
+          icon: "folder",
+          kind: "professional",
+        },
+        {
+          title: "Mr. Sales CRM",
+          company: "UsadosBR",
+          period: "Jul/2022 — Jul/2023",
+          role: "Desenvolvedor Back-End",
+          description: "Produto SaaS de CRM voltado ao setor automotivo. Atuação no desenvolvimento e sustentação da API, apoiando funcionalidades comerciais e integrações usadas por lojas e concessionárias.",
+          tech: ["C#", ".NET", "APIs REST", "SQL Server", "SaaS", "CRM"],
+          icon: "users",
           kind: "professional",
         },
         {
@@ -575,23 +440,23 @@ const translations = {
           kind: "professional",
         },
         {
-          title: "Mr. Sales CRM",
-          company: "UsadosBR",
-          period: "Jul/2022 — Jul/2023",
-          role: "Back-End Developer",
-          description: "A SaaS CRM product focused on the automotive sector. Participation in API development and maintenance, supporting commercial features and integrations used by dealers and dealerships.",
-          tech: ["C#", ".NET", "APIs REST", "SQL Server", "SaaS", "CRM"],
-          icon: "shield",
-          kind: "professional",
-        },
-        {
           title: "DsAutoEstoque",
           company: "UsadosBR",
           period: "Jul/2022 — Jul/2023",
           role: "Back-End Developer",
           description: "An ad integrator for automotive dealers and concessionaires, connecting vehicle inventory to advertising channels and helping businesses keep their listings updated.",
           tech: ["C#", ".NET", "APIs", "Integrations", "SQL Server", "Automotive"],
-          icon: "code",
+          icon: "folder",
+          kind: "professional",
+        },
+        {
+          title: "Mr. Sales CRM",
+          company: "UsadosBR",
+          period: "Jul/2022 — Jul/2023",
+          role: "Back-End Developer",
+          description: "A SaaS CRM product focused on the automotive sector. Participation in API development and maintenance, supporting commercial features and integrations used by dealers and dealerships.",
+          tech: ["C#", ".NET", "APIs REST", "SQL Server", "SaaS", "CRM"],
+          icon: "users",
           kind: "professional",
         },
         {
@@ -675,9 +540,9 @@ export default function PortfolioHenriqueFernandes() {
       <header className="sticky top-0 z-40 bg-[#031428]/90 backdrop-blur-xl rounded-b-3xl shadow-lg shadow-black/30 mx-3 md:mx-4 lg:mx-5">
         <nav className="mx-auto flex max-w-7xl items-center justify-between gap-2 px-4 py-3 sm:gap-4 sm:px-5 md:py-4 lg:gap-6">
           <a href="#inicio" className="flex items-center gap-2 sm:gap-3" aria-label="Henrique Fernandes Tech">
-            <img src={HorizontalLogo} alt="Henrique Fernandes Tech" className="h-8 w-auto object-contain sm:h-10 md:h-12 lg:h-16" />
+            <img src={HorizontalLogo} alt="Henrique Fernandes Tech" className="h-10 w-auto object-contain xs:h-12 md:h-14 lg:h-16" />
           </a>
-          <div className="hidden items-center gap-4 sm:gap-6 md:flex lg:gap-8">
+          <div className="hidden items-center gap-4 sm:gap-6 lg:flex lg:gap-8">
             {navItems.map((item) => (
               <a key={item.href} href={item.href} className="text-xs font-medium text-white transition hover:text-[#d6a354] sm:text-sm lg:text-base">
                 {t.nav[item.label.toLowerCase() as keyof typeof t.nav] || item.label}
@@ -688,7 +553,7 @@ export default function PortfolioHenriqueFernandes() {
             <button
               type="button"
               onClick={toggleLanguage}
-              className="hidden rounded-full border border-[#d6a354]/50 p-2 text-[#d6a354] sm:inline-flex hover:bg-[#d6a354]/10 transition"
+              className="hidden rounded-full border border-[#d6a354]/50 p-2 text-[#d6a354] lg:inline-flex hover:bg-[#d6a354]/10 transition"
               aria-label="Toggle language"
               title={language === "pt" ? "Switch to English" : "Mudar para Português"}
             >
@@ -696,7 +561,7 @@ export default function PortfolioHenriqueFernandes() {
             </button>
             <button
               type="button"
-              className="md:hidden inline-flex rounded-full border border-[#d6a354]/50 p-2 text-[#d6a354]"
+              className="lg:hidden inline-flex rounded-full border border-[#d6a354]/50 p-2 text-[#d6a354]"
               aria-label="Menu"
               onClick={toggleMenu}
             >
@@ -711,7 +576,7 @@ export default function PortfolioHenriqueFernandes() {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            className="md:hidden border-t border-white/10 bg-[#031428] px-4 py-4"
+            className="lg:hidden border-t border-white/10 bg-[#031428] px-4 py-4"
           >
             <div className="flex flex-col gap-4">
               {navItems.map((item) => (
@@ -721,7 +586,7 @@ export default function PortfolioHenriqueFernandes() {
                   className="text-sm font-medium text-white transition hover:text-[#d6a354]"
                   onClick={() => setMenuOpen(false)}
                 >
-                  {item.label}
+                  {t.nav[item.label.toLowerCase() as keyof typeof t.nav] || item.label}
                 </a>
               ))}
             </div>
@@ -933,7 +798,7 @@ export default function PortfolioHenriqueFernandes() {
       </section>
 
       <footer className="relative z-10 border-t border-white/10 bg-[#04172d] rounded-t-3xl px-3 py-6 sm:px-5 sm:py-8 text-center text-xs sm:text-sm text-white/75">
-        © {new Date().getFullYear()} Henrique Fernandes Tech — {t.footer}
+        © {new Date().getFullYear()} Henrique Fernandes Tech — <span className="text-[#d6a354]">{t.footer}</span>
       </footer>
     </main>
   );
